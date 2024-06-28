@@ -36,10 +36,11 @@ void AToonTanksGameMode::BeginPlay()
 //функция для старта через 3 секунды 
 void AToonTanksGameMode::HandelGameStart()
 {
-
+	StartGame();//вот так сможем вызвать иивент в блупринт gameMode
 	Tansk=Cast<ATansk>(UGameplayStatics::GetPlayerPawn(this,0));
 	//подключаем свой плеер контроллер
-	ToonTanksPlayerController=Cast<AToonTanksPlayerController>(UGameplayStatics::GetPlayerController(this,0));
+	ToonTanksPlayerController=Cast<AToonTanksPlayerController>
+	(UGameplayStatics::GetPlayerController(this,0));
 
 	if (ToonTanksPlayerController)
 	{
