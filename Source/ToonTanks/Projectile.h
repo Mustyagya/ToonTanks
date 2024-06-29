@@ -35,4 +35,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category="Combat")
 	UParticleSystem* HitParticles;
+
+	UPROPERTY(EditAnywhere, Category="Combat")
+	UParticleSystemComponent* TrailParticles;
 };
