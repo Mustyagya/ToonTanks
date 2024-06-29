@@ -17,7 +17,9 @@ AProjectile::AProjectile()
 
 	ProjectileMovementComponent=CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movment Component"));
 	ProjectileMovementComponent->MaxSpeed=1300.0f; // это птолок по скорости
-	ProjectileMovementComponent->InitialSpeed=1300.0f;//это по какой скорости он будет передвигатся 
+	ProjectileMovementComponent->InitialSpeed=1300.0f;//это по какой скорости он будет передвигатся
+
+	
 }
 
 // Called when the game starts or when spawned
@@ -34,8 +36,14 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 {
 	// Получаем владельца снаряда
 	auto MyOwner =GetOwner();
-	// Если у снаряда нет владельца, выходим из функции
-	if (MyOwner==nullptr) return;
+	// Если у снаряда нет владельца, выходим из функции, Но 
+	if (MyOwner==nullptr)
+	{
+		//Сначала его уничто жаем
+		Destroy();
+		//А потом возврощаем результат
+		return;
+	}
 	// Получаем контроллер владельца (инициатор)
 	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
 	// Определяем класс типа урона (по умолчанию)
@@ -45,11 +53,13 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 	{
 		// Наносим урон столкнувшемуся актеру
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClass);
+
+		UGameplayStatics::SpawnEmitterAtLocation(this,HitParticles,GetActorLocation(),GetActorRotation());
 		// Уничтожаем снаряд после столкновения
 		Destroy();
 	}
 
-
+ 
 }
 
 // Called every frame

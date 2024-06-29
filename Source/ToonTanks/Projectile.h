@@ -32,4 +32,7 @@ private:
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 	// Урон, наносимый снарядом
 	UPROPERTY(EditAnywhere)float Damage=50.0f;
+
+	UPROPERTY(EditAnywhere, Category="Combat")
+	UParticleSystem* HitParticles;
 };
