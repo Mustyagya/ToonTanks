@@ -55,10 +55,10 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClass);
 
 		UGameplayStatics::SpawnEmitterAtLocation(this,HitParticles,GetActorLocation(),GetActorRotation());
-		// Уничтожаем снаряд после столкновения
-		Destroy();
+		
 	}
-
+	// Уничтожаем снаряд после столкновения
+	Destroy();
  
 }
 
