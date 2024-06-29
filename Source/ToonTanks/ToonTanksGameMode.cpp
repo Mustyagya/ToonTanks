@@ -20,11 +20,18 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 			ToonTanksPlayerController->SetPlayerEnabledState(false);
 				
 		}
+		GameOver(false);//пока выключен чтобы сразу не было проигреша в игре
 	}
 		//это уже уничтожение турели
 		 else if (ATower* DestroyedTower= Cast<ATower>(DeadActor))
 		{
 		 	DestroyedTower->HandleDistrucion();
+		 	--TargetTower;//уменьшаем количество башен после их смерти
+		 	if(TargetTower==0)
+		 	{
+		 		//если все башни уничтожены то это победа!
+		 		GameOver(true);
+		 	}
 		}
 		
 	}
@@ -36,7 +43,10 @@ void AToonTanksGameMode::BeginPlay()
 //функция для старта через 3 секунды 
 void AToonTanksGameMode::HandelGameStart()
 {
-	StartGame();//вот так сможем вызвать иивент в блупринт gameMode
+	//и тут в начале указываем количество турелей в мире
+	TargetTower=GetTargetTowerCount();
+	
+	StartGame();//вот так сможем вызвать ивент в блупринт gameMode
 	Tansk=Cast<ATansk>(UGameplayStatics::GetPlayerPawn(this,0));
 	//подключаем свой плеер контроллер
 	ToonTanksPlayerController=Cast<AToonTanksPlayerController>
@@ -52,4 +62,14 @@ void AToonTanksGameMode::HandelGameStart()
 
 		GetWorldTimerManager().SetTimer(PlayerEnableTimerHandle,PlayerEnableTimerDelegate,StartDay,false);
 	}
+}
+
+int32 AToonTanksGameMode::GetTargetTowerCount()
+{
+	//делаем конвератацию автера башни в массви
+	TArray<AActor*> Tower;
+	//обращаемся кактерам башни через статический классы
+	UGameplayStatics::GetActorOfClass(this,ATower::StaticClass());
+	// и возврощаем их количество
+	return Tower.Num();
 }

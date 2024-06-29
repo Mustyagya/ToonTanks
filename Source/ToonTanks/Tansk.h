@@ -24,7 +24,9 @@ public:
 	APlayerController* GetTanskPlayerController() const {return TanskPlayerController;}
 	//это мы получаем доступ до контроллера если он находится в привате или протектед, можно конечно сделать его публичным,
 	//но нестоит этого делать 
-	
+protected:
+	virtual  void BeginPlay() override;
+	virtual  void Tick(float DeltaTime) override;
 private:
 
 	UPROPERTY(VisibleAnywhere , Category = "Component") class USpringArmComponent* SpringArm;
@@ -34,7 +36,5 @@ private:
 	void moved (float value);
 	void turn (float value);
 	APlayerController* TanskPlayerController;
-protected:
-	virtual  void BeginPlay() override;
-	virtual  void Tick(float DeltaTime) override;
+
 };

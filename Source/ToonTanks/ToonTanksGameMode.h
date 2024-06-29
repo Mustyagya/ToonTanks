@@ -15,6 +15,11 @@ class TOONTANKS_API AToonTanksGameMode : public AGameModeBase
 	GENERATED_BODY()
 public:
 	void ActorDied (AActor* DeadActor);
+protected:
+	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintImplementableEvent) void StartGame();
+	UFUNCTION(BlueprintImplementableEvent) void GameOver(bool bWonGame);
+	
 private:
 	//подключаем классы
 	//танка
@@ -25,8 +30,9 @@ private:
 	float StartDay = 3.0f;
     //это как раз функция для этого
 	void HandelGameStart();
+	//нужно узнать сколько турелей унчтожено чтобы выиграть в игре
+	int32 TargetTower=0;
+	int32 GetTargetTowerCount();
 
-protected:
-	virtual void BeginPlay() override;
-	UFUNCTION(BlueprintImplementableEvent) void StartGame();
+
 };

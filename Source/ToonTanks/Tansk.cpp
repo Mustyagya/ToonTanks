@@ -52,7 +52,7 @@ void ATansk::Tick(float DeltaTime)
 	{
 		FHitResult HitResult;
 		TanskPlayerController->GetHitResultUnderCursor(ECC_Visibility,false,HitResult);
-		DrawDebugSphere(GetWorld(),HitResult.ImpactPoint,25.0f,7,FColor::Red,false,-1.0f);
+		//DrawDebugSphere(GetWorld(),HitResult.ImpactPoint,25.0f,7,FColor::Red,false,-1.0f);
 		RotateTuret (HitResult.ImpactPoint);
 
 	}

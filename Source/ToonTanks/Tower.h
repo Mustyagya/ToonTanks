@@ -16,7 +16,9 @@ class TOONTANKS_API ATower : public ABasePawn
 public:
 	virtual  void Tick(float DeltaTime) override;
 	void HandleDistrucion();
-	
+
+protected:
+	virtual  void BeginPlay() override;
 private:
 	class ATansk* Tansk;
 	
@@ -27,8 +29,7 @@ private:
 	void CheckFierCondition();
 	bool InFierRange();
 	
-protected:
-	virtual  void BeginPlay() override;
+
 
 	
 	
