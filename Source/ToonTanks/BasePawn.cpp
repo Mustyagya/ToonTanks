@@ -8,6 +8,7 @@
 #include  "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
 #include "Projectile.h"
+#include "Particles/ParticleSystem.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -30,13 +31,19 @@ ABasePawn::ABasePawn()
 
 void ABasePawn::HandleDistrucion()
 {
-	
+	if (DeathParticles)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticles, GetActorLocation(), GetActorRotation());
+	}
 }
 
 // Called when the game starts or when spawned
 void ABasePawn::BeginPlay()
 {
 	Super::BeginPlay();
+	//партикал спецэфект на уничтожение обьекта танка/турели
+	
+
 	
 }
 

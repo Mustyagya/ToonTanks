@@ -37,5 +37,8 @@ private:
 	class USceneComponent* ProjectileSpawn;
     //--
 	UPROPERTY(EditDefaultsOnly,Category="Combat") TSubclassOf<class AProjectile> ProjectileClass;
-	
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class UParticleSystem* DeathParticles;
+
 };
