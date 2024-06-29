@@ -18,7 +18,6 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 		{
 			//это новый варинат отключения контроллера
 			ToonTanksPlayerController->SetPlayerEnabledState(false);
-				
 		}
 		GameOver(false);//пока выключен чтобы сразу не было проигреша в игре
 	}
@@ -26,7 +25,7 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 		 else if (ATower* DestroyedTower= Cast<ATower>(DeadActor))
 		{
 		 	DestroyedTower->HandleDistrucion();
-		 	--TargetTower;//уменьшаем количество башен после их смерти
+		 	TargetTower--;//уменьшаем количество башен после их смерти
 		 	if(TargetTower==0)
 		 	{
 		 		//если все башни уничтожены то это победа!
@@ -67,9 +66,9 @@ void AToonTanksGameMode::HandelGameStart()
 int32 AToonTanksGameMode::GetTargetTowerCount()
 {
 	//делаем конвератацию автера башни в массви
-	TArray<AActor*> Tower;
+	TArray<AActor*> Towers;
 	//обращаемся кактерам башни через статический классы
-	UGameplayStatics::GetActorOfClass(this,ATower::StaticClass());
+	UGameplayStatics::GetAllActorsOfClass(this,ATower::StaticClass(),Towers);
 	// и возврощаем их количество
-	return Tower.Num();
+	return Towers.Num();
 }
