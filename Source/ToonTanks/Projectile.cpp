@@ -72,6 +72,12 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
 		}
 
+		if (HitCameraShakeClass)
+		{
+			// UE 4.25 - ClientPlayCameraShake; UE 4.26+ ClientStartCameraShake
+			GetWorld()->GetFirstPlayerController()->ClientPlayCameraShake(HitCameraShakeClass);
+		}
+
 	}
 	// Уничтожаем снаряд после столкновения
 	Destroy();

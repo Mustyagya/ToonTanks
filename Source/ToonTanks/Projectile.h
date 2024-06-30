@@ -1,11 +1,12 @@
 ﻿
 
 #pragma once
+
 #include "Components/StaticMeshComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/PrimitiveComponent.h"
- #include "Projectile.generated.h"
+#include "Projectile.generated.h"
 
 class USoundBase;
 
@@ -44,6 +45,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	USoundBase *HitSound;
+    //чтобы камера тряслась
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TSubclassOf<class UCameraShakeBase> HitCameraShakeClass;
 
 
 };
