@@ -45,8 +45,6 @@ void ABasePawn::HandleDistrucion()
 	{
 		GetWorld()->GetFirstPlayerController()->ClientPlayCameraShake(DeathCameraShakeClass);
 	}
-
-
 }
 
 // Called when the game starts or when spawned
