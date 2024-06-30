@@ -40,11 +40,18 @@ void ATower::BeginPlay()
 
 void ATower::CheckFierCondition()
 {
+	//это проверка на то если танк умер то чтобы турелька не стреляла
+	if (Tansk == nullptr)
+	{
+		return;
+	}
 	
-	if (InFierRange())
+
+	if (InFierRange()&& Tansk->bAlive)
 	{
 		Fier();
 	}
+	
 }
 
 bool ATower::InFierRange()

@@ -36,6 +36,7 @@ void ATansk::HandleDistrucion()
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
 	//вот так будет прятать танк когда закончатся ХП!
+	bAlive = false;
 }
 
 void ATansk::BeginPlay()

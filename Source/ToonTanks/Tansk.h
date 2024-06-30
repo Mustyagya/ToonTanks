@@ -23,7 +23,9 @@ public:
 
 	APlayerController* GetTanskPlayerController() const {return TanskPlayerController;}
 	//это мы получаем доступ до контроллера если он находится в привате или протектед, можно конечно сделать его публичным,
-	//но нестоит этого делать 
+	//но нестоит этого делать
+
+	bool bAlive = true;
 protected:
 	virtual  void BeginPlay() override;
 	virtual  void Tick(float DeltaTime) override;

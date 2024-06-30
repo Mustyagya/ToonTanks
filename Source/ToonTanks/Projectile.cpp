@@ -53,9 +53,11 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 		return;
 	}
 	// Получаем контроллер владельца (инициатор)
-	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
+	//тут удаляем auto поскольку не рокемендуется его использовать так что меняем на AController*
+	AController* MyOwnerInstigator = MyOwner->GetInstigatorController();
 	// Определяем класс типа урона (по умолчанию)
-	auto DamageTypeClass=UDamageType::StaticClass();
+	//тут удаляем auto поскольку не рокемендуется его использовать так что меняем на UClass*
+	UClass* DamageTypeClass=UDamageType::StaticClass();
 	// Проверяем, что столкнувшийся актер валиден и не является самим снарядом или его владельцем
 	if (OtherActor && OtherActor != this && OtherActor != MyOwner)
 	{

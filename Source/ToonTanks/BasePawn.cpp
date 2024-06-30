@@ -74,7 +74,8 @@ void ABasePawn::Fier()
 	// Получаем ориентацию (вращение) компонента, откуда будет запускаться снаряд
 	FRotator Rotation=ProjectileSpawn->GetComponentRotation();
 	// Спавним (создаем) снаряд в мире игры по указанным координатам и ориентации
-	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass,Location,Rotation);
+	//здесь тоже самое вместо auto меняем на AProjectile*
+	AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass,Location,Rotation);
 	// Устанавливаем владельца для снаряда
 	// Это важно для определения, кто именно выпустил снаряд, что может использоваться для
 	// учета урона и других взаимодействий в игре
